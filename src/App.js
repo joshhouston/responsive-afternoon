@@ -7,17 +7,18 @@ class App extends Component {
     super()
     this.state = {
       menuStatus: 'drop-down-menu',
-      sideStatus: 'drop=down-side'
+      // sideStatus: 'drop-down-side',
+      isOpen: false
     }
   }
 
   handleClick = () => {
-    if(this.state.menuStatus === 'drop-down-menu-open' || this.state.sideStatus === 'drop-down-side-open') {
+    if(this.state.menuStatus === 'drop-down-menu-open') {
       this.setState({menuStatus: 'drop-down-menu-closed'})
-      this.setState({sideStatus: 'drop-down-side-closed'})
+      // this.setState({sideStatus: 'drop-down-side-closed'})
     }else {
       this.setState({menuStatus: 'drop-down-menu-open'})
-      this.setState({sideStatus: 'drop-down-side-open'})
+      // this.setState({sideStatus: 'drop-down-side-open'})
     }
     
   }
@@ -25,7 +26,7 @@ class App extends Component {
     return (
       <header>
         <nav>
-          <ul>
+          <ul >
             <div className='logo'>
               <li>Start Bootstrap</li>
             </div>
@@ -36,26 +37,33 @@ class App extends Component {
               <li className='elements'>CONTACT</li>
 
               <div className="hamburger" >
-                <li className='menuham'>
+                <li 
+                   onClick={this.handleClick} className='menuham'>
                   MENU
                   <img 
-                   onClick={this.handleClick}
                   src="https://img.icons8.com/material/24/000000/menu.png"/>
                 </li>
             </div>
             
             <div className={this.state.menuStatus}>
-              <div className={this.state.sideStatus}>
+              <ul className='mobile'>
                 <li>SERVICES</li>
                 <li>PORTFOLIO</li>
                 <li>ABOUT</li>
                 <li>TEAM</li>
                 <li>CONTACT</li>
-              </div>
+              </ul>
             </div>
           </ul>
         </nav>
+
+        {/* <div className="header-main">
+          <h3>Welcome To Our Studio</h3>
+          <h1>IT'S NICE TO MEET YOU </h1>
+          <button>TELL ME MORE</button>
+        </div> */}
       </header>
+      
     );
   }
 }
